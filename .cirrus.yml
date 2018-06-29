@@ -1,0 +1,22 @@
+container:
+  image: node:latest
+env:
+  GITHUB_TOKEN: ENCRYPTED[cd4055a6a46b32e71d55d178e102c18897cf6ae597cdb6d390f11fafb460a3157255c16f919253c8fabef2894b718724]
+check_task:
+  node_modules_cache:
+    folder: tech-component-design/node_modules
+    fingerprint_script: cat tech-component-design/package-lock.json
+    populate_script: npm ci --prefix tech-component-design
+  matrix:
+    - name: Build Tech Angular Library
+      build_script: cd tech-component-design && npm run build @tech/tech-component
+    - name: Build Tech Angular Story
+      build_script: cd tech-component-design && npm run build-storybook
+      remove_docs_script: rm -fr ../docs
+      move_docs_script: mv tech-component-design/storybook-static docs
+      git_config_user_script: git config user.name "circleci"
+      git_config_email_script: git config user.email "circleci@techoffice.com"
+      git_add_script: git add .
+      git_commit_script: git commit -m "[ci skip] build github page"
+      git_add_origin_script: git remote add release https://imben1109:${GITHUB_TOKEN}@github.com/Tech-Framework/Tech-Angular.git
+      git_push_script: git push release

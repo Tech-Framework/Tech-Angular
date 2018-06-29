@@ -1,0 +1,33 @@
+
+<accordion closeOthers="true" isAnimated="true">
+    <accordion-group heading="Layout">
+        <div class="container">
+            <form autocomplete="off">
+                <h5>Layout</h5>
+                <div class="row">
+                    <div class="col">
+                        <tech-text-input></tech-text-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <tech-text-input 
+                            label="Testing Label">
+                        </tech-text-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <tech-text-input 
+                            label="Testing Label"
+                            [mandatoryLabel]="true">
+                        </tech-text-input>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </accordion-group>
+    <accordion-group heading="Example 1: Reactive Form" [(isOpen)]="isOpen">
+        <design-text-input-reactive-form-example1></design-text-input-reactive-form-example1>
+    </accordion-group>
+</accordion>
