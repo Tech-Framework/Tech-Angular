@@ -10,6 +10,7 @@ It would depend on the following library
 * Npm
 * Rxjs
 * Moment.js
+* Visaul Studio Code
 
 ## Components
 * Datepicker
@@ -32,3 +33,6 @@ It would depend on the following library
 * Grid Popup Edit
 * Infinite Scroll Page
 * Calendar
+* Menu
+* Single Tab Access
+
