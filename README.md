@@ -10,6 +10,7 @@ It would depend on the following library
 * Npm
 * Rxjs
 * Moment.js
+* Lodash
 * Visaul Studio Code
 
 ## Components
