@@ -1,0 +1,30 @@
+<form [formGroup]="simpleForm" autocomplete="off">
+        <div class="container" *ngIf="!switchOff">
+    
+            <h5>Reactive Form Example</h5>
+            <div class="row">
+                <div class="col">
+                    <tech-datepicker formControlName="simpleField1"
+                        label="Simple Field 1">
+                    </tech-datepicker>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <tech-datepicker formControlName="simpleField2"
+                        label="Simple Field 2">
+                    </tech-datepicker>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <tech-datepicker formControlName="simpleField3"
+                        label="Simple Field 3">
+                    </tech-datepicker>
+                </div>
+            </div>
+        </div>
+    </form>
+    
+    <textarea style="height: 250px; width: 500px;">{{simpleForm.value | json}}</textarea>
+    
