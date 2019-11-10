@@ -71,9 +71,10 @@ export class TimezoneService {
             if (!timezoneId){
                 timezoneId = 'utc';
             }
-            const systemLuxonDate = moment.tz(date, timezoneId);
-            const localLuxonDate = systemLuxonDate.local(true);
-            return localLuxonDate.toDate();
+            const systemMomentDate = moment.tz(date, timezoneId);
+            const localMomentDate = systemMomentDate.local(true);
+            const localMomentDateOnly = localMomentDate.startOf('day');
+            return localMomentDateOnly.toDate();
         }
         return new Date(date.getTime());
     }
@@ -111,18 +112,46 @@ export class TimezoneService {
     }
 
     /**
-     * If Input is 2018-11-08 11:00 UTC
-     *  The System Timezone is UTC +8 
-     *  It would return 2018-11-08 19:00 UTC
+     * If Input is 2018-11-08 00:00 UTC
+     *  The System Timezone is UTC -8
+     *  It would return 2018-11-07 00:00 UTC
+     * 
+     * If Input is 2018-11-08 08:00 UTC
+     *  The System Timezone is UTC -8
+     *  It would return 2018-11-00 00:00 UTC
+     * 
      * @param val 
      */
     public getJsDateBySystemDateInput(val: SystemDateInput){
         if (!this.useLocalTimezone){
             let timezoneId = this.getTimezoneId();
-            const localLuxonDate = DateTime.fromJSDate(val.date, {zone: timezoneId});
-            const systemLuxonDate = localLuxonDate.setZone('utc', {keepLocalTime: true});
-            const systemLuxonDateOnly = systemLuxonDate.startOf('day');
-            return systemLuxonDateOnly.toJSDate();
+            const localMomentDate = moment.tz(val.date, timezoneId);
+            const systemMomentDate = localMomentDate.utc(true);
+            const systemMomentDateOnly = systemMomentDate.startOf('day');
+            return systemMomentDateOnly.toDate();
+        } else {
+            return new Date(val.date.getTime());
+        }
+    }
+
+    /**
+     * If Input is 2018-11-08 00:00 UTC
+     *  The System Timezone is UTC -8
+     *  It would return 2018-11-07 00:00 (Local)
+     * 
+     * If Input is 2018-11-08 08:00 UTC
+     *  The System Timezone is UTC -8
+     *  It would return 2018-11-00 00:00 (Local)
+     * 
+     * @param val 
+     */
+    public getLocalDateBySystemDateInput(val, SystemDateInput){
+        if (!this.useLocalTimezone){
+            let timezoneId = this.getTimezoneId();
+            const localMomentDate = moment.tz(val.date, timezoneId);
+            const systemMomentDate = localMomentDate.local(true);
+            const systemMomentDateOnly = systemMomentDate.startOf('day');
+            return systemMomentDateOnly.toDate();
         } else {
             return new Date(val.date.getTime());
         }
@@ -132,15 +161,16 @@ export class TimezoneService {
      * Get Local UTC Date by Js Date
      * 
      * Input Date: 2018-11-08 11:00 UTC
-     * It would return 2018-11-08 11:00 Local Time
+     * It would return 2018-11-08 11:00 (Local)
      * 
      * @param date 
      * 
      */
     public getLocalUtcDate(date: Date): Date{
-        const utcLuxonDate = moment(date).utc();
-        const localLuxonDate = utcLuxonDate.local(true);
-        return localLuxonDate.toDate();
+        const utcMomentDate = moment(date);
+        const localMomentDate = utcMomentDate.local(true);
+        const localMomentDateOnly = localMomentDate.startOf('day');
+        return localMomentDateOnly.toDate();
     }
     
     /**
@@ -154,10 +184,10 @@ export class TimezoneService {
      * @param date 
      */
     public getJsDateFromLocalUtcDate(date: Date): Date {
-        const utcLuxonDate = moment(date);
-        const localLuxonDate = utcLuxonDate.utc(true);
-        const localLuxonDateOnly = localLuxonDate.startOf('day');
-        return localLuxonDateOnly.toDate(); 
+        const utcMomentDate = moment(date);
+        const localMomentDate = utcMomentDate.utc(true);
+        const localMomentDateOnly = localMomentDate.startOf('day');
+        return localMomentDateOnly.toDate(); 
     }
     
     /**

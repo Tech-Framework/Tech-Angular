@@ -14,18 +14,10 @@ export class AppConfigService {
     let counter = 10;
     // alert('waiting to start application')
     const p = new Promise<void>((resolve)=>{
-      const timerId = setInterval(() => {
-        counter = counter - 1;
-        console.log('current counter is ' + counter  );
-        if (counter <= 0 ){
-          this.timezoneService.setSystemTimezone({
-            timezoneId: 'Europe/Paris'
-          })
-          // alert('application is started');
-          clearInterval(timerId)
-          resolve();  
-        }
-      }, 500);
+      this.timezoneService.setSystemTimezone({
+        timezoneId: 'Europe/Paris'
+      });
+      resolve();
     });
     return p;
   }

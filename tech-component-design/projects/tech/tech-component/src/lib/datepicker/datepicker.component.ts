@@ -70,7 +70,7 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor{
           const tmpDate = this.timezoneService.getJsDateBySystemDateInput(obj);
           this.propagateChange(tmpDate);
           obj = tmpDate;
-        }           
+        } 
         this.datepickerValue = this.timezoneService.getLocalUtcDate(obj);
       } else {
         this.datepickerValue = this.timezoneService.getLocalSystemDate(obj);
