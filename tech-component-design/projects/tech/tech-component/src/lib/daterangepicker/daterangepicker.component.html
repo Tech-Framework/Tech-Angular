@@ -1,1 +1,19 @@
-<p>daterangepicker works!</p>
+<div class="datepicker-container">
+    <mat-form-field >
+        <mat-label>{{label}}</mat-label>
+        <input matInput
+            type="text" 
+            bsDaterangepicker
+            [bsValue]="datepickerValue"
+            (bsValueChange)="onBsValueChange($event)"
+            (keydown)="onKeydown($event)" />
+        <button mat-icon-button matSuffix 
+            *ngIf="datepickerValue"
+            (click)="onClearValue()">
+            <mat-icon>clear</mat-icon>
+        </button>
+        <mat-icon matSuffix *ngIf="!datepickerValue">
+            date_range
+        </mat-icon>
+    </mat-form-field>          
+</div>  

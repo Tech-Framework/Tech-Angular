@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, forwardRef, Optional, Self, ViewChild, HostListener, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, forwardRef, Optional, Self, ViewChild, HostListener, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, NgControl, Validator, NG_VALIDATORS, ValidationErrors, AbstractControl, FormControl, Validators } from '@angular/forms';
-import { BsDatepickerDirective } from 'ngx-bootstrap';
+import { TimezoneService } from '../timezone/timezone.service';
+import { SystemDateInput } from '../timezone/system-time';
 
 @Component({
   selector: 'tech-datepicker',
@@ -17,8 +18,7 @@ import { BsDatepickerDirective } from 'ngx-bootstrap';
 })
 export class DatepickerComponent implements OnInit, ControlValueAccessor{
   
- 
-  private datepickerValue: Date;
+  datepickerValue: Date;
 
   @Input()
   label: string;
@@ -30,16 +30,16 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor{
   displayFormate = "YYYY-MM-DD"
 
   @Input()
-  dateStringInputFormat = null;
+  inOutStringFormat = null;
 
   @Input()
   isBrowserTimezone = true;
 
-  _timeZone = 0;
   @Input()
-  set timeZone(timeZone: number){
-    this._timeZone = timeZone;
-  }
+  useUtc = false;
+
+  @Input()
+  useSystemTimezone = false;
 
   _maxDate: Date;
   @Input()
@@ -53,7 +53,8 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor{
     this._minDate = date;
   }
 
-  constructor() {
+  constructor(private _changeDetectorRef: ChangeDetectorRef, 
+    private timezoneService: TimezoneService) {
     
   }
 
@@ -62,14 +63,35 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor{
 
   writeValue(obj: Date ): void {
     if(obj){
-      this.datepickerValue = obj;
-    }else {
+      if (this.isBrowserTimezone){
+        this.datepickerValue = obj;
+      } else if (this.useUtc){
+        if (obj instanceof SystemDateInput){
+          const tmpDate = this.timezoneService.getJsDateBySystemDateInput(obj);
+          this.propagateChange(tmpDate);
+          obj = tmpDate;
+        }           
+        this.datepickerValue = this.timezoneService.getLocalUtcDate(obj);
+      } else {
+        this.datepickerValue = this.timezoneService.getLocalSystemDate(obj);
+      }
+    } else {
       this.datepickerValue = undefined;
     }
+    this._changeDetectorRef.detectChanges();
   }
 
   onBsValueChange(obj: Date){
-    this.propagateChange(obj);
+    obj.setHours(0,0,0,0);
+    this.datepickerValue = obj;
+    if (this.isBrowserTimezone){
+      this.propagateChange(obj);
+    } else if (this.useUtc) {
+      this.propagateChange(this.timezoneService.getJsDateFromLocalUtcDate(obj));
+    } else {
+      this.propagateChange(this.timezoneService.getJsDateFromLocalSytemDate(obj));
+    }
+    this._changeDetectorRef.detectChanges();
   }
 
   propagateChange = (ouput: any) => {};
@@ -89,7 +111,7 @@ export class DatepickerComponent implements OnInit, ControlValueAccessor{
   }
 
   onClearValue(){
-    this.datepickerValue = null;
+    this.datepickerValue = undefined;
   }
 
 }

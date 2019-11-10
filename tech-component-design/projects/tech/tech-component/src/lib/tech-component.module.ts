@@ -10,12 +10,14 @@ import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BsDatepickerModule, BsDropdownModule } from 'ngx-bootstrap';
+import { BsDatepickerModule, BsDropdownModule, AccordionModule } from 'ngx-bootstrap';
 
 
 import {MatInputModule} from '@angular/material';
 import {MatIconModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material';
+import { ErrorMessageComponent } from './error-message/error-message.component';
+import { LabelComponent } from './label/label.component';
 
 
 @NgModule({
@@ -28,13 +30,15 @@ import {MatButtonModule} from '@angular/material';
     TextInputComponent, 
     NumberInputComponent, 
     AutocompleteComponent, 
-    CheckboxComponent
+    CheckboxComponent, 
+    ErrorMessageComponent, LabelComponent
   ],
   imports: [
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
     BsDropdownModule.forRoot(),
-
+    AccordionModule.forRoot(),
+    
     MatInputModule,
     MatIconModule,
     MatButtonModule

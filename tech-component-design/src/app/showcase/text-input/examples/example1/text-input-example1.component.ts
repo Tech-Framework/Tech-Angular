@@ -3,8 +3,8 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 
 @Component({
   selector: 'design-text-input-reactive-form-example1',
-  templateUrl: './example1.component.html',
-  styleUrls: ['./example1.component.less']
+  templateUrl: './text-input-example1.component.html',
+  styleUrls: ['./text-input-example1.component.less']
 })
 export class TextInputExample1Component implements OnInit {
 
@@ -14,7 +14,7 @@ export class TextInputExample1Component implements OnInit {
 
   ngOnInit() {
     this.simpleForm = this.fb.group({
-      simpleField1: new FormControl(''),
+      simpleField1: new FormControl('', [Validators.required]),
       simpleField2: new FormControl(''),
       simpleField3: new FormControl('')
     });

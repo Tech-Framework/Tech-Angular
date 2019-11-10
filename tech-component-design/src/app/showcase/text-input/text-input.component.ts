@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./text-input.component.less']
 })
 export class TextInputComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit() {

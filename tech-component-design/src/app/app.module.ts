@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,10 +9,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatepickerComponent } from './showcase/datepicker/datepicker.component';
 import { TextInputComponent } from './showcase/text-input/text-input.component';
 import { NumberInputComponent } from './showcase/number-input/number-input.component';
-import { TextInputExample1Component } from './showcase/text-input/reactive-form/example1/example1.component';
+import { TextInputExample1Component } from './showcase/text-input/examples/example1/text-input-example1.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DatepickerExample1Component } from './showcase/datepicker/reactive-form/example1/example1.component';
-
+import { DatepickerExample1Component } from './showcase/datepicker/examples/example1/datepicker-example1.component';
+import { AccordionModule } from 'ngx-bootstrap';
+import { AppConfigService } from './config/app-config.service';
+import { TimezoneService } from '@tech/tech-component/timezone/luxon.timezone.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,10 +32,21 @@ import { DatepickerExample1Component } from './showcase/datepicker/reactive-form
     ReactiveFormsModule,
 
     AppRoutingModule,
+    HttpClientModule,
 
-    TechComponentModule
+    TechComponentModule,
+    
+    AccordionModule.forRoot(),
+
   ],
-  providers: [],
+  providers: [
+    { 
+      provide: APP_INITIALIZER, 
+      useFactory: (configService: AppConfigService) => () => configService.initTimezone(), 
+      deps: [AppConfigService, TimezoneService],
+      multi: true 
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
