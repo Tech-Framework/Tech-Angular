@@ -2,6 +2,7 @@ import { Component, OnInit, Input, forwardRef, Optional, Self, ViewChild, HostLi
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, NgControl, Validator, NG_VALIDATORS, ValidationErrors, AbstractControl, FormControl, Validators } from '@angular/forms';
 import { TimezoneService } from '../timezone/timezone.service';
 import { SystemDateInput } from '../timezone/system-time';
+import { BsDaterangepickerDirective } from 'ngx-bootstrap';
 
 @Component({
   selector: 'tech-datepicker',
@@ -18,6 +19,8 @@ import { SystemDateInput } from '../timezone/system-time';
 })
 export class DatepickerComponent implements OnInit, ControlValueAccessor{
   
+  @ViewChild('datepicker', {static: false}) picker: BsDaterangepickerDirective;
+
   datepickerValue: Date;
 
   @Input()

@@ -1,12 +1,13 @@
 <div class="datepicker-container">
-    <mat-form-field >
+    <mat-form-field>
         <mat-label>{{label}}</mat-label>
         <input matInput
+            #datepicker="bsDatepicker"
             type="text" 
             bsDatepicker
             [bsValue]="datepickerValue"
             (bsValueChange)="onBsValueChange($event)"
-            (keydown)="onKeydown($event)" />
+            (keydown)="onKeydown($event)"/>
         <button mat-icon-button matSuffix 
             *ngIf="datepickerValue"
             (click)="onClearValue()">

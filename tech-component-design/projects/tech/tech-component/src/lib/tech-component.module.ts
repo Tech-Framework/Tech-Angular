@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
+
 import { TechComponentComponent } from './tech-component.component';
 import { DatepickerComponent } from './datepicker/datepicker.component';
 import { DaterangepickerComponent } from './daterangepicker/daterangepicker.component';
@@ -31,10 +33,14 @@ import { LabelComponent } from './label/label.component';
     NumberInputComponent, 
     AutocompleteComponent, 
     CheckboxComponent, 
-    ErrorMessageComponent, LabelComponent
+    ErrorMessageComponent, 
+    LabelComponent
   ],
   imports: [
     BrowserAnimationsModule,
+    
+    TranslateModule.forRoot(),
+    
     BsDatepickerModule.forRoot(),
     BsDropdownModule.forRoot(),
     AccordionModule.forRoot(),
