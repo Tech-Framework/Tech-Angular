@@ -8,8 +8,23 @@ import { NgControl } from '@angular/forms';
 })
 export class LabelComponent implements OnInit, DoCheck{
 
-  @Input() 
-  label: string = '';
+    _label: string = '';
+  
+  @Input()
+  set label(val: string){
+    this._label = val;
+  }
+
+  get label(): string{
+    if(this.mandatoryLabel){
+      return this._label + '*';
+    } else {
+      return this._label
+    }
+  }
+
+  @Input()
+  mandatoryLabel: false;
 
   constructor(@Optional() public ngControl: NgControl) {
   }
@@ -18,6 +33,6 @@ export class LabelComponent implements OnInit, DoCheck{
   }
 
   ngDoCheck(){
-    if(this.ngControl.control.validator)
+
   }
 }

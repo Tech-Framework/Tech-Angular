@@ -16,8 +16,23 @@ export class TextInputComponent implements OnInit, ControlValueAccessor{
   @Input()
   required: boolean = false;
 
+  _label: string = '';
+  
   @Input()
-  label: string;
+  set label(val: string){
+    this._label = val;
+  }
+
+  get label(): string{
+    if(this.mandatoryLabel){
+      return this._label + '*';
+    } else {
+      return this._label
+    }
+  }
+
+  @Input()
+  mandatoryLabel: false;
 
   private validationFn: () => void;
   private onChangeFn: (obj: any) => void;
@@ -45,7 +60,9 @@ export class TextInputComponent implements OnInit, ControlValueAccessor{
     console.log('onchange');
     const target = event.target as HTMLInputElement;
     if  (target){
-      this.onChangeFn(target.value);
+      if (this.onChangeFn){
+        this.onChangeFn(target.value);
+      }
     }
   }
 

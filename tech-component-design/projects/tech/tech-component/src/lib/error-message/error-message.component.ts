@@ -25,6 +25,8 @@ export class ErrorMessageComponent implements OnInit, DoCheck{
       if (keyArr && keyArr.length > 0 ){
         this.errorMessage = this.translateSevice.instant(keyArr[0]);
       }
+    }else {
+      this.errorMessage = '';
     }
   }
 
