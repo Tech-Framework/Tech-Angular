@@ -16,6 +16,8 @@ import { AccordionModule } from 'ngx-bootstrap';
 import { AppConfigService } from './config/app-config.service';
 import { TimezoneService } from '@tech/tech-component/timezone/luxon.timezone.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AutocompleteComponent } from './showcase/autocomplete/autocomplete.component';
+import { AutocompleteExample1Component } from './showcase/autocomplete/examples/example1/autocomplete-example1/autocomplete-example1.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +25,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     TextInputComponent,
     NumberInputComponent,
     TextInputExample1Component,
-    DatepickerExample1Component
+    DatepickerExample1Component,
+    AutocompleteComponent,
+    AutocompleteExample1Component
   ],
   imports: [
     BrowserAnimationsModule,

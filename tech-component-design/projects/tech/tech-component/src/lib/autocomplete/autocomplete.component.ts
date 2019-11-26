@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'tech-autocomplete',
@@ -6,6 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./autocomplete.component.less']
 })
 export class AutocompleteComponent implements OnInit {
+
+  @Input()
+  label: string = '';
+
+  @Input()
+  options: any[] = [];
+
+  selectedValue: any = null;
+  inputValue: string = '';
 
   constructor() { }
 

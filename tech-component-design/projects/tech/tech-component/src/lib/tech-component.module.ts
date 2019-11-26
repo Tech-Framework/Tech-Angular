@@ -12,7 +12,7 @@ import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BsDatepickerModule, BsDropdownModule, AccordionModule } from 'ngx-bootstrap';
+import { BsDatepickerModule, BsDropdownModule, AccordionModule, TypeaheadModule } from 'ngx-bootstrap';
 
 
 import {MatInputModule} from '@angular/material';
@@ -20,6 +20,7 @@ import {MatIconModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { LabelComponent } from './label/label.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -38,13 +39,16 @@ import { LabelComponent } from './label/label.component';
   ],
   imports: [
     BrowserAnimationsModule,
-    
+    ReactiveFormsModule,
+    FormsModule,
+
     TranslateModule.forRoot(),
     
     BsDatepickerModule.forRoot(),
     BsDropdownModule.forRoot(),
     AccordionModule.forRoot(),
-    
+    TypeaheadModule.forRoot(),
+
     MatInputModule,
     MatIconModule,
     MatButtonModule
@@ -53,7 +57,8 @@ import { LabelComponent } from './label/label.component';
   exports: [
     DatepickerComponent, 
     DaterangepickerComponent,
-    TextInputComponent
+    TextInputComponent,
+    AutocompleteComponent
   ]
 })
 export class TechComponentModule { }

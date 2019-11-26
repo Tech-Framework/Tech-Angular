@@ -1,1 +1,11 @@
-<p>autocomplete works!</p>
+<div class="text-input-container">
+    <mat-form-field>
+        <mat-label>{{label}}</mat-label>
+        <input matInput 
+            [typeahead]="options"
+            [typeaheadMinLength]="0"
+            [(ngModel)]="inputValue"
+            (typeaheadOnSelect)="onSelect($event)">
+    </mat-form-field>
+    <tech-error-message></tech-error-message>
+</div>

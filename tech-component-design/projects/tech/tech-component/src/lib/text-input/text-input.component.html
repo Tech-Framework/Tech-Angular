@@ -1,6 +1,6 @@
 <div class="text-input-container">
-    <mat-form-field>
-        <mat-label >{{label}}</mat-label>
+    <mat-form-field [hideRequiredMarker]="false">
+        <mat-label>{{label}}</mat-label>
         <input matInput (change)="onChange($event)">
     </mat-form-field>
     <tech-error-message></tech-error-message>
