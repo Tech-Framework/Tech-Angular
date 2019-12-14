@@ -13,9 +13,6 @@ import { NgControl, ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, Vali
 })
 export class TextInputComponent implements OnInit, ControlValueAccessor{
 
-  @Input()
-  required: boolean = false;
-
   _label: string = '';
   
   @Input()
@@ -41,11 +38,9 @@ export class TextInputComponent implements OnInit, ControlValueAccessor{
   }
 
   ngOnInit() {
-    console.log('init');
   }
 
   writeValue(obj: any){
-    console.log('write value');
   }
   
   registerOnChange(fn: any){
@@ -57,7 +52,6 @@ export class TextInputComponent implements OnInit, ControlValueAccessor{
   }
 
   onChange(event: Event){
-    console.log('onchange');
     const target = event.target as HTMLInputElement;
     if  (target){
       if (this.onChangeFn){

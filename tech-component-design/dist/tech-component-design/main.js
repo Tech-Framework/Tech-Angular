@@ -448,7 +448,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container\">\r\n  <h1>Tech Component Design</h1>\r\n\r\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\r\n    <div class=\"collapse navbar-collapse\">\r\n      <div class=\"navbar-nav\">\r\n        <a class=\"nav-item nav-link\" routerLink=\"/datepicker\">Datepicker</a>\r\n      </div>\r\n      <div class=\"navbar-nav\">\r\n          <a class=\"nav-item nav-link\" routerLink=\"/text-input\">Text Input</a>\r\n      </div>\r\n      <div class=\"navbar-nav\">\r\n        <a class=\"nav-item nav-link\" routerLink=\"/autocomplete\">Autocomplete</a>\r\n    </div>\r\n    </div>\r\n  </nav>\r\n  \r\n  <router-outlet></router-outlet>\r\n\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container\">\r\n  <h1>Tech Component Design</h1>\r\n\r\n  <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\r\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n      <span class=\"navbar-toggler-icon\"></span>\r\n    </button>\r\n      \r\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n      <div class=\"navbar-nav\">\r\n        <a class=\"nav-item nav-link\" routerLink=\"/datepicker\">Datepicker</a>\r\n      </div>\r\n      <div class=\"navbar-nav\">\r\n          <a class=\"nav-item nav-link\" routerLink=\"/text-input\">Text Input</a>\r\n      </div>\r\n      <div class=\"navbar-nav\">\r\n        <a class=\"nav-item nav-link\" routerLink=\"/autocomplete\">Autocomplete</a>\r\n    </div>\r\n    </div>\r\n  </nav>\r\n  \r\n  <router-outlet></router-outlet>\r\n\r\n</div>\r\n");
 
 /***/ }),
 
@@ -461,7 +461,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<accordion>\n    <accordion-group heading=\"Layout\">\n        <div class=\"container\">\n            <div class=\"row\">\n                <div class=\"col\">\n                    <tech-autocomplete [options]=\"options\">\n\n                    </tech-autocomplete>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"col\">\n                    <tech-autocomplete></tech-autocomplete>\n                </div>\n            </div>\n        </div>\n    </accordion-group>\n    <accordion-group heading=\"Example 1: Reactive Form\">\n        <design-autocomplete-example1></design-autocomplete-example1>\n    </accordion-group>\n</accordion>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<accordion>\n    <accordion-group heading=\"Layout\">\n        <div class=\"container\">\n            <div class=\"row\">\n                <div class=\"col\">\n                    <tech-autocomplete [options]=\"options\">\n                    </tech-autocomplete>\n                </div>\n            </div>\n            <div class=\"row\">\n                <div class=\"col\">\n                    <tech-autocomplete [options]=\"options\" \n                        [label]=\"'Testing Label'\">\n                    </tech-autocomplete>\n                </div>\n            </div>\n        </div>\n    </accordion-group>\n    <accordion-group heading=\"Example 1: Reactive Form\">\n        <design-autocomplete-example1></design-autocomplete-example1>\n    </accordion-group>\n</accordion>\n");
 
 /***/ }),
 
@@ -807,6 +807,13 @@ var AutocompleteComponent = /** @class */ (function () {
         this.inputValue = '';
     }
     AutocompleteComponent.prototype.ngOnInit = function () {
+    };
+    AutocompleteComponent.prototype.onSelect = function () {
+    };
+    AutocompleteComponent.prototype.registerOnChange = function (fn) {
+        this.onChangeFn = fn;
+    };
+    AutocompleteComponent.prototype.registerOnTouched = function (fn) {
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
@@ -1639,7 +1646,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var TextInputComponent = /** @class */ (function () {
     function TextInputComponent() {
-        this.required = false;
         this._label = '';
     }
     TextInputComponent_1 = TextInputComponent;
@@ -1659,10 +1665,8 @@ var TextInputComponent = /** @class */ (function () {
         configurable: true
     });
     TextInputComponent.prototype.ngOnInit = function () {
-        console.log('init');
     };
     TextInputComponent.prototype.writeValue = function (obj) {
-        console.log('write value');
     };
     TextInputComponent.prototype.registerOnChange = function (fn) {
         this.onChangeFn = fn;
@@ -1670,7 +1674,6 @@ var TextInputComponent = /** @class */ (function () {
     TextInputComponent.prototype.registerOnTouched = function (fn) {
     };
     TextInputComponent.prototype.onChange = function (event) {
-        console.log('onchange');
         var target = event.target;
         if (target) {
             if (this.onChangeFn) {
@@ -1679,9 +1682,6 @@ var TextInputComponent = /** @class */ (function () {
         }
     };
     var TextInputComponent_1;
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
-    ], TextInputComponent.prototype, "required", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
     ], TextInputComponent.prototype, "label", null);

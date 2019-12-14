@@ -7,6 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class AutocompleteComponent implements OnInit {
 
+  private onChangeFn: (obj: any) => void;
+
   @Input()
   label: string = '';
 
@@ -19,6 +21,18 @@ export class AutocompleteComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  registerOnChange(fn: any){
+    this.onChangeFn = fn;
+  }
+
+  registerOnTouched(fn: any){
+
+  }
+  
+  onSelect(a:any ) {
+	  
   }
 
 }

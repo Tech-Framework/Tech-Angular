@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Timezone } from './timezone';
 import { DateTime } from 'luxon';
 import { SystemDateInput } from './system-time';
-import * as moment from 'moment-timezone';
+import * as moment_ from 'moment-timezone';
+const moment = moment_;
 
 @Injectable({
     providedIn: 'root',

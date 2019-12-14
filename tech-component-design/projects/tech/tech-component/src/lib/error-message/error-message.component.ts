@@ -10,7 +10,7 @@ import * as _ from 'lodash';
 })
 export class ErrorMessageComponent implements OnInit, DoCheck{
 
-  private errorMessage: string = '';
+  errorMessage: string = '';
   
   constructor(@Optional() public ngControl: NgControl, 
     private translateSevice: TranslateService) {
