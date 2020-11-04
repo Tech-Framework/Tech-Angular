@@ -12,7 +12,7 @@ check_task:
       build_script: cd tech-component-design && npm run build @tech/tech-component
     - name: Build Tech Angular Story
       build_script: cd tech-component-design && npm run build-storybook
-      remove_docs_script: rm -fr ../docs
+      remove_docs_script: rm -fr ./docs
       move_docs_script: mv tech-component-design/storybook-static docs
       git_config_user_script: git config user.name "circleci"
       git_config_email_script: git config user.email "circleci@techoffice.com"
