@@ -1,7 +1,7 @@
 container:
   image: node:latest
 env:
-  GITHUB_TOKEN: ENCRYPTED[cd4055a6a46b32e71d55d178e102c18897cf6ae597cdb6d390f11fafb460a3157255c16f919253c8fabef2894b718724]
+  GITHUB_TOKEN: ENCRYPTED[b6cd7dcf4ad54467cff75f6253e55b50315b8c20487eb4468eeac982bf390cda45e9101a3d2a106087525a61292047ae]
 check_task:
   node_modules_cache:
     folder: tech-component-design/node_modules
