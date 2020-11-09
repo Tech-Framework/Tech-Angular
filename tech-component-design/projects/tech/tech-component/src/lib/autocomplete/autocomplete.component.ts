@@ -1,11 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
+import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'tech-autocomplete',
   templateUrl: './autocomplete.component.html',
   styleUrls: ['./autocomplete.component.less']
 })
-export class AutocompleteComponent implements OnInit {
+export class AutocompleteComponent implements OnInit, ControlValueAccessor{
 
   private onChangeFn: (obj: any) => void;
 
@@ -20,6 +22,7 @@ export class AutocompleteComponent implements OnInit {
 
   constructor() { }
 
+  
   ngOnInit() {
   }
 
@@ -30,7 +33,11 @@ export class AutocompleteComponent implements OnInit {
   registerOnTouched(fn: any){
 
   }
-  
+
+  writeValue(obj: string): void {
+    this.inputValue = obj;
+  }
+
   onSelect(a:any ) {
 	  
   }
